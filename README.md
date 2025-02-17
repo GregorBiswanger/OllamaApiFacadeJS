@@ -1,4 +1,4 @@
-# **🚀 OllamaApiFacadeJS - Express.js Middleware for Ollama API Integration**
+# **🚀 OllamaApiFacadeJS - For Express.js with LangChainJS**
 
 **OllamaApiFacadeJS** is an open-source **Node.js** library designed to seamlessly integrate an **Express.js backend** with the **Ollama API** using **LangChainJS**. This allows clients expecting an Ollama-compatible backend—such as **Open WebUI**—to interact with your **Express.js API** effortlessly.
 
