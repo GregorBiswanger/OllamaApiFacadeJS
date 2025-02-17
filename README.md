@@ -4,7 +4,7 @@
 
 It serves as a **Node.js counterpart** to the [**.NET-based OllamaApiFacade**](https://github.com/GregorBiswanger/OllamaApiFacade), providing a similar level of integration but optimized for the JavaScript/TypeScript ecosystem.
 
-![OllamaApiFacadeJS Demo](./OllamaApiFacadeJS/assets/demo.gif)
+![OllamaApiFacadeJS Demo](./assets/demo.gif)
 
 ## **✨ Features**
 
