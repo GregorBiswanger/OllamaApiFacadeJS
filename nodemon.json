@@ -1,0 +1,5 @@
+{
+  "watch": ["src", "example"],
+  "ext": "ts",
+  "exec": "tsx example/index.ts"
+}

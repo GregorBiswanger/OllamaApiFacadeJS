@@ -1,0 +1,63 @@
+{
+  "name": "ollama-api-facade-js",
+  "version": "1.0.0",
+  "description": "OllamaApiFacadeJS is an open-source library for running an ExpressJS backend as an Ollama API using LangChainJS. It supports local language models services like LmStudio and allows seamless message conversion and streaming between LangChainJS and Ollama clients like Open WebUI. Contributions welcome!",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "start": "tsx example/index.ts",
+    "dev": "nodemon --watch src --exec tsx example/index.ts",
+    "build": "tsc",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "express",
+    "ollama",
+    "langchain",
+    "lmstudio",
+    "ai",
+    "openai"
+  ],
+  "author": "Gregor Biswanger",
+  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregorBiswanger/OllamaApiFacadeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GregorBiswanger/OllamaApiFacadeJS/issues"
+  },
+  "homepage": "https://github.com/GregorBiswanger/OllamaApiFacadeJS#readme",
+  "dependencies": {
+    "@langchain/core": "^0.3.40",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@langchain/openai": "^0.4.4",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

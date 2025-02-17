@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "commonjs",
+    "removeComments": false,
+    "declaration": true,
+    "declarationMap": true,      
+    "rootDir": "./src",         
+    "outDir": "./dist",        
+    "strict": true,
+    "esModuleInterop": true,
+    "sourceMap": true
+  },
+  "include": ["src"]            
+}
