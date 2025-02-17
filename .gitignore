@@ -14,7 +14,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # Editor & System Files
-.vscode/
 .DS_Store
 Thumbs.db
 

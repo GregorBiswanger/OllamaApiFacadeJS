@@ -36,7 +36,7 @@ export class OllamaApiFacade {
    */
   public postApiChat(chatHandler: ChatHandler) {
     this.app.post('/api/chat', async (request: Request, response: Response) => {
-      const chatRequest: ChatRequest = request.body;
+      const chatRequest = new ChatRequest(request.body);
 
       chatRequest.messages = request.body.messages.map((nativeChatMessage: NativeChatMessage) => {
         switch (nativeChatMessage.role) {

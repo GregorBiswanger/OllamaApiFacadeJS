@@ -24,3 +24,5 @@ export function createOllamaApiFacade(
 
 export default createOllamaApiFacade;
 export * from './models/ChatModels';
+export * from './config/LMStudioConfig';
+export * from './utils/MessageUtils';

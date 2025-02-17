@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug mit nodemon",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "args": [
+                "run",
+                "dev"
+            ],
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "sourceMaps": true
+        }
+    ]
+}

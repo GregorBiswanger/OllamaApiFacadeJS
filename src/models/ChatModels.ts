@@ -1,12 +1,13 @@
 import { BaseMessage } from '@langchain/core/messages';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import { ChatResponse } from '../core/ChatResponse';
+import { addSystemMessage } from '../utils/MessageUtils';
 
 /**
- * Interface representing a chat request.
+ * Class representing a chat request.
  * This is submitted by the Ollama client and automatically mapped to LangChain message objects.
  */
-export interface ChatRequest {
+export class ChatRequest {
   /**
    * The chat ID.
    */
@@ -41,6 +42,40 @@ export interface ChatRequest {
    * Indicates whether the response should be streamed.
    */
   stream: boolean;
+
+  constructor({
+    chat_id,
+    id,
+    messages,
+    model,
+    options,
+    session_id,
+    stream
+  }: {
+    chat_id: string;
+    id: string;
+    messages: BaseMessage[];
+    model: string;
+    options: { [key: string]: any };
+    session_id: string;
+    stream: boolean;
+  }) {
+    this.chat_id = chat_id;
+    this.id = id;
+    this.messages = messages;
+    this.model = model;
+    this.options = options;
+    this.session_id = session_id;
+    this.stream = stream;
+  }
+
+  /**
+   * Adds a system message.
+   * @param systemPrompt - The system message to be added.
+   */
+  addSystemMessage(systemPrompt: string): void {
+    this.messages = addSystemMessage(this.messages, systemPrompt);
+  }
 }
 
 /**
