@@ -1,6 +1,5 @@
 import express from 'express';
 import { ChatOpenAI } from '@langchain/openai';
-// import createOllamaApiFacade from './../dist/';
 import createOllamaApiFacade from './../src/';
 
 const chatOpenAI = new ChatOpenAI({
