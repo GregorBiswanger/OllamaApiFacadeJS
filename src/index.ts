@@ -12,7 +12,7 @@ import { OllamaApiFacade } from './core/OllamaApiFacade';
  * @param {string} [modelName='nodeapi'] - The name of the chat model.
  * @returns {OllamaApiFacade} - The created OllamaApiFacade instance.
  */
-export default function createOllamaApiFacade(
+export function createOllamaApiFacade(
   app: Express,
   baseChatModel: BaseChatModel,
   modelName: string = 'nodeapi'
@@ -22,4 +22,5 @@ export default function createOllamaApiFacade(
   return facade;
 }
 
+export default createOllamaApiFacade;
 export * from './models/ChatModels';
