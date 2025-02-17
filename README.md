@@ -43,7 +43,7 @@ Here’s how to integrate OllamaApiFacadeJS into an **Express.js application**:
 ```ts
 import express from 'express';
 import { ChatOpenAI } from '@langchain/openai';
-import createOllamaApiFacade from 'ollama-api-facade-js';
+import { createOllamaApiFacade } from 'ollama-api-facade-js';
 
 const chatOpenAI = new ChatOpenAI({
   apiKey: 'none',
