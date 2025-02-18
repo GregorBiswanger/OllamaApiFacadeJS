@@ -1,6 +1,7 @@
 import { Express } from 'express';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import { OllamaApiFacade } from './core/OllamaApiFacade';
+import { ToolCallService } from './core/ToolCallService';
 
 /**
  * Creates an instance of OllamaApiFacade.
@@ -14,10 +15,10 @@ import { OllamaApiFacade } from './core/OllamaApiFacade';
  */
 export function createOllamaApiFacade(
   app: Express,
-  baseChatModel: BaseChatModel,
+  baseChatModel: BaseChatModel | any,
   modelName: string = 'nodeapi'
 ): OllamaApiFacade {
-  const facade = new OllamaApiFacade(app, baseChatModel, modelName);
+  const facade = new OllamaApiFacade(app, baseChatModel, modelName, new ToolCallService(baseChatModel));
 
   return facade;
 }

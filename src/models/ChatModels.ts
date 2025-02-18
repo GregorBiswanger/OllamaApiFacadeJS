@@ -2,6 +2,7 @@ import { BaseMessage } from '@langchain/core/messages';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import { ChatResponse } from '../core/ChatResponse';
 import { addSystemMessage } from '../utils/MessageUtils';
+import { ToolCallService } from '../core/ToolCallService';
 
 /**
  * Class representing a chat request.
@@ -50,7 +51,7 @@ export class ChatRequest {
     model,
     options,
     session_id,
-    stream
+    stream,
   }: {
     chat_id: string;
     id: string;
@@ -98,10 +99,12 @@ export interface NativeChatMessage {
  * @param {ChatRequest} chatRequest - The chat request object submitted by the Ollama client.
  * @param {BaseChatModel} chatModel - The LangChain chat model service used to communicate with the language model.
  * @param {ChatResponse} chatResponse - The proxy that streams LangChain incoming messages back to the client.
+ * @param {ToolCallService} toolCallService - The service that handles tool calls.
  * @returns {Promise<void>} - A promise that resolves when the chat handling is complete.
  */
 export type ChatHandler = (
   chatRequest: ChatRequest,
   chatModel: BaseChatModel,
-  chatResponse: ChatResponse
+  chatResponse: ChatResponse,
+  toolCallService: ToolCallService
 ) => Promise<void>;

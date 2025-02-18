@@ -11,6 +11,7 @@ It serves as a **Node.js counterpart** to the [**.NET-based OllamaApiFacade**](h
 ✅ **Ollama-Compatible API for Express.js** – Easily expose your Express backend as an Ollama API.  
 ✅ **Supports Local AI Models (e.g., LM Studio)** – Works with local inference engines like **LM Studio**.  
 ✅ **Seamless Integration with LangChainJS** – Enables natural language processing with LangChainJS.  
+✅ **Automatic Function Calling Support** – **New:** Automatically executes tools (function calling) with `ToolCallService`.  
 ✅ **Streaming Support** – Stream AI-generated responses directly to clients.  
 ✅ **Custom Model Names** – Configure custom model names for full flexibility.  
 ✅ **Optimized for TypeScript** – Includes full TypeScript support (`.d.ts` files) for better IntelliSense.
@@ -72,6 +73,51 @@ ollamaApi.listen();
 - **Initializes the Ollama API facade using LangChainJS.**
 - **Handles AI chat requests with streaming responses.**
 - **Starts the server on `http://localhost:11434` (default Ollama port).**
+
+## **🚀 Automatic Function Calling with `ToolCallService`**
+
+Normally, when using **LangChainJS Function Calling**, you need to:
+
+1. **Bind tools manually (`bindTools([...])`)**.
+2. **Check the response for `tool_calls`**.
+3. **Execute the appropriate tool(s)**.
+4. **Re-send the updated message history to the model**.
+
+**OllamaApiFacadeJS simplifies this with `ToolCallService`, handling everything for you!**
+
+### **🚀 Example with `ToolCallService`**
+
+```ts
+import express from 'express';
+import { ChatOpenAI } from '@langchain/openai';
+import { createOllamaApiFacade, createLMStudioConfig } from 'ollama-api-facade-js';
+import { dateTimeTool } from './tools/dateTimeTool';
+
+const chatOpenAI = new ChatOpenAI(createLMStudioConfig());
+const tools = [dateTimeTool];
+
+const app = express();
+const ollamaApi = createOllamaApiFacade(app, chatOpenAI);
+
+ollamaApi.postApiChat(async (chatRequest, chatModel, chatResponse, toolCallService) => {
+  chatRequest.addSystemMessage(`You are a helpful Devbot. 
+    You have a dateTimeTool registered, execute it when asked about the time / date / day.
+    `);
+
+  const response = await toolCallService.with(tools).invoke(chatRequest.messages);
+
+  chatResponse.asStream(response);
+});
+
+ollamaApi.listen();
+```
+
+📌 **What happens under the hood?**
+
+- **`ToolCallService` automatically binds the tools**.
+- **If the model requests a tool, it gets executed immediately**.
+- **The response is updated and re-sent to the model if needed**.
+- **You don’t need to manually handle `tool_calls` anymore!**
 
 ## **📡 Running Open WebUI with Docker**
 

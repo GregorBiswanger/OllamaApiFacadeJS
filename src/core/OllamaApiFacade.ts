@@ -1,9 +1,10 @@
 import express, { Express, Request, Response } from 'express';
-import { SystemMessage, HumanMessage, AIMessage } from '@langchain/core/messages';
+import { SystemMessage, HumanMessage, AIMessage, ToolMessage } from '@langchain/core/messages';
 import { ChatResponse } from './ChatResponse';
 import { ApiRoutes } from './ApiRoutes';
 import { ChatHandler, ChatRequest, NativeChatMessage } from '../models/ChatModels';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
+import { ToolCallService } from './ToolCallService';
 
 /**
  * Class representing the API facade for handling chat requests and responses.
@@ -18,7 +19,8 @@ export class OllamaApiFacade {
   constructor(
     private app: Express,
     private baseChatModel: BaseChatModel,
-    modelName: string
+    modelName: string,
+    private toolService: ToolCallService
   ) {
     this.MODEL_NAME = modelName;
     this.apiRoutes = new ApiRoutes(app, modelName);
@@ -53,7 +55,7 @@ export class OllamaApiFacade {
 
       const chatResponse = new ChatResponse(response);
 
-      await chatHandler(chatRequest, this.baseChatModel, chatResponse);
+      await chatHandler(chatRequest, this.baseChatModel, chatResponse, this.toolService);
     });
   }
 
