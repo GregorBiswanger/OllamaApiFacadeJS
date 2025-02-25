@@ -13,6 +13,7 @@ export interface LMStudioConfig {
 export function createLMStudioConfig(options?: LMStudioConfig) {
   return {
     apiKey: 'none',
+    baseURL: options?.baseURL || 'http://localhost:1234/v1',
     configuration: {
       baseURL: options?.baseURL || 'http://localhost:1234/v1',
       httpAgent: options?.httpAgent
