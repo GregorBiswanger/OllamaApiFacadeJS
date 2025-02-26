@@ -1,7 +1,7 @@
-import { BaseMessage } from '@langchain/core/messages';
+import { BaseMessage, HumanMessage } from '@langchain/core/messages';
 import { BaseChatModel } from '@langchain/core/language_models/chat_models';
 import { ChatResponse } from '../core/ChatResponse';
-import { addSystemMessage } from '../utils/MessageUtils';
+import { addSystemMessage, lastHumanMessage, replaceLastHumanMessage } from '../utils/MessageUtils';
 import { ToolCallService } from '../core/ToolCallService';
 
 /**
@@ -76,6 +76,23 @@ export class ChatRequest {
    */
   addSystemMessage(systemPrompt: string): void {
     this.messages = addSystemMessage(this.messages, systemPrompt);
+  }
+
+  /**
+   * Retrieves the last human message from the chat messages.
+   * @returns {HumanMessage} - The last human message.
+   */
+  lastHumanMessage() {
+    return lastHumanMessage(this.messages);
+  }
+
+  /**
+   * Replaces the last human message in the chat messages.
+   * @param {HumanMessage} humanMessage - The new human message to replace the last one.
+   * @returns {BaseMessage[]} - The updated array of chat messages.
+   */
+  replaceLastHumanMessage(humanMessage: HumanMessage) {
+    return replaceLastHumanMessage(this.messages, humanMessage);
   }
 }
 
