@@ -14,6 +14,7 @@ import { ToolCallService } from './ToolCallService';
 export class OllamaApiFacade {
   MODEL_NAME = '';
   DEFAULT_PORT = 11434;
+  DEFAULT_HOST = 'localhost';
   private apiRoutes: ApiRoutes;
 
   constructor(
@@ -66,7 +67,7 @@ export class OllamaApiFacade {
    */
   public listen(callback?: (address: string) => void) {
     const server = this.app.listen(this.DEFAULT_PORT, () => {
-      const address = `http://localhost:${this.DEFAULT_PORT}`;
+      const address = `http://${this.DEFAULT_HOST}:${this.DEFAULT_PORT}`;
 
       if (callback) {
         callback(address);
