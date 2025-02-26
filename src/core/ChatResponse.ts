@@ -17,10 +17,10 @@ export class ChatResponse {
     this.response.setHeader('Transfer-Encoding', 'chunked');
     this.response.setHeader('Connection', 'keep-alive');
 
-    if (streamSource instanceof IterableReadableStream) {
-      await this.sendStream(this.transformStream(streamSource));
+    if (streamSource?.constructor?.name === 'IterableReadableStream') {
+      await this.sendStream(this.transformStream(streamSource as IterableReadableStream<AIMessageChunk>));
     } else {
-      await this.sendStream(this.splitIntoChunks(streamSource));
+      await this.sendStream(this.splitIntoChunks(streamSource as string || streamSource as AIMessageChunk));
     }
   }
 
