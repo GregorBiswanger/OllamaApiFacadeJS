@@ -47,7 +47,7 @@ export class ChatResponse {
       this.response.write(`${JSON.stringify({ error: 'No content streamed.' })}\n`);
     }
 
-    this.response.write('[DONE]\n');
+    this.response.write(`${JSON.stringify({ done: true })}\n`);
     this.response.end();
   }
 
