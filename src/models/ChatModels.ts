@@ -88,11 +88,17 @@ export class ChatRequest {
 
   /**
    * Replaces the last human message in the chat messages.
-   * @param {HumanMessage} humanMessage - The new human message to replace the last one.
+   * @param {HumanMessage | string} humanMessage - The new human message to replace the last one. Can be a HumanMessage object or a string.
    * @returns {BaseMessage[]} - The updated array of chat messages.
    */
-  replaceLastHumanMessage(humanMessage: HumanMessage) {
-    return replaceLastHumanMessage(this.messages, humanMessage);
+  replaceLastHumanMessage(humanMessage: HumanMessage | string) {
+    let message = humanMessage;
+
+    if (typeof message === 'string') {
+      message = new HumanMessage(humanMessage);
+    }
+
+    return replaceLastHumanMessage(this.messages, message);
   }
 }
 
