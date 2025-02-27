@@ -1,14 +1,20 @@
 import express from 'express';
 import { ChatOpenAI } from '@langchain/openai';
-import { createOllamaApiFacade, createLMStudioConfig } from './../src/';
+import { createOllamaApiFacade } from '../src';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import { dateTimeTool } from './tools/dateTimeTool';
+import getSecretFromVault from './azure-key-vault';
 
-const chatOpenAI = new ChatOpenAI(
-  createLMStudioConfig({
-    httpAgent: new HttpsProxyAgent('http://localhost:8080'), // Burp Suite proxy for debugging
-  })
-);
+const openAiApiKey = await getSecretFromVault('OPENAI-API-KEY');
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+const chatOpenAI = new ChatOpenAI({
+  configuration: {
+    apiKey: openAiApiKey,
+    httpAgent: new HttpsProxyAgent('http://localhost:8080'),
+  }, 
+});
 const tools = [dateTimeTool];
 
 const app = express();

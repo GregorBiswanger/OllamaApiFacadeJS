@@ -179,6 +179,24 @@ To analyze the HTTP communication between **LangChainJS** and language model API
    );
    ```
 
+   Or for cloud API usage:
+
+   ```typescript
+   import { ChatOpenAI } from '@langchain/openai';
+   import { HttpsProxyAgent } from 'https-proxy-agent';
+   import { createLMStudioConfig } from 'ollama-api-facade-js';
+
+   // Disable certificate verification
+   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+   const chatOpenAI = new ChatOpenAI({
+     configuration: {
+       apiKey: openAiApiKey,
+       httpAgent: new HttpsProxyAgent('http://localhost:8080'),
+     },
+   });
+   ```
+
 3. Start **Burp Suite Community Edition** or **OWASP ZAP** and ensure the proxy is listening on `http://localhost:8080`.
 
 #### ⚠️ Important Notes

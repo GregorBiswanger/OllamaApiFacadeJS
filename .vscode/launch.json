@@ -2,13 +2,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug mit nodemon",
+            "name": "Debug Local-LM-Sample",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "pnpm",
             "args": [
                 "run",
-                "dev"
+                "dev:local-lm"
+            ],
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "sourceMaps": true
+        },
+        {
+            "name": "Debug Cloud-LM-Sample",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "args": [
+                "run",
+                "dev:cloud-lm"
             ],
             "restart": true,
             "console": "integratedTerminal",
