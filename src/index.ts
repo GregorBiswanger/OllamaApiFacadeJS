@@ -23,7 +23,7 @@ export function createOllamaApiFacade(
   return facade;
 }
 
-export default createOllamaApiFacade;
 export * from './models/ChatModels';
 export * from './config/LMStudioConfig';
 export * from './utils/MessageUtils';
+export * from './core/ToolCallService';
