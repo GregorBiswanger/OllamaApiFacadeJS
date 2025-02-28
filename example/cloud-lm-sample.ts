@@ -10,6 +10,7 @@ const openAiApiKey = await getSecretFromVault('OPENAI-API-KEY');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const chatOpenAI = new ChatOpenAI({
+  model: 'gpt-4o-mini',
   configuration: {
     apiKey: openAiApiKey,
     httpAgent: new HttpsProxyAgent('http://localhost:8080'),

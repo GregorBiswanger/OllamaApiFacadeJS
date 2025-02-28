@@ -39,6 +39,8 @@ export class ToolCallService {
     let response = await modelWithTools.invoke(messages);
 
     if (response.tool_calls?.length) {
+      messages.push(response);
+
       for (const toolCall of response.tool_calls) {
         const tool = this.tools.find((t) => t.name === toolCall.name);
         if (tool) {
