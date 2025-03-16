@@ -1,6 +1,6 @@
 {
   "name": "ollama-api-facade-js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "OllamaApiFacadeJS is an open-source library for running an ExpressJS backend as an Ollama API using LangChainJS. It supports local language models services like LmStudio and allows seamless message conversion and streaming between LangChainJS and Ollama clients like Open WebUI. Contributions welcome!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,7 @@
   ],
   "author": "Gregor Biswanger",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/GregorBiswanger/OllamaApiFacadeJS.git"

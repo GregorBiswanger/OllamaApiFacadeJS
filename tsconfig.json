@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2016",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "CommonJS",
     "removeComments": false,
     "declaration": true,
     "declarationMap": true,      
